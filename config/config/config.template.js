@@ -611,7 +611,7 @@ let config = {
     {
       module: "newsfeed",
       position: "bottom_bar",
-      classes: "xsmall dimmed",
+      classes: "newsfeed-times",
       hiddenOnStartup: true,
       config: {
         feeds: [
@@ -630,7 +630,7 @@ let config = {
     {
       module: "newsfeed",
       position: "bottom_bar",
-      classes: "xsmall dimmed",
+      classes: "newsfeed-zeit",
       hiddenOnStartup: true,
       config: {
         feeds: [
@@ -702,12 +702,12 @@ let config = {
         rotationTime: 2 * 60 * 1000,
         modules: [
           // ["alert", "updatenotification", 'MMM-Ff-digital-rain'],
-          ["alert", "clock", "calendar-holidays", 'MMM-Todoist', 'MMM-JokeAPI', 'newsfeed'],
+          ["alert", "clock", "calendar-holidays", 'MMM-Todoist', 'MMM-JokeAPI', 'newsfeed-times'],
           ["MMM-Ff-cht-sh"],
-          ["alert", "clock", "calendar-private", "MMM-QRCode", 'MMM-Ff-XKCD', 'newsfeed'],
-          ["alert", "clock", "calendar-holidays", "weather", "weather", "MMM-NINA", 'MMM-Ff-Dilbert', 'newsfeed'],
-          ["alert", "clock", "calendar-private", "weather", "weather", "MMM-NINA", 'MMM-wiki'],
+          ["alert", "clock", "calendar-private", "MMM-QRCode", 'MMM-Ff-XKCD', 'newsfeed-zeit'],
+          ["alert", "clock", "calendar-holidays", "weather", "weather", "MMM-NINA", 'MMM-Ff-Dilbert', 'newsfeed-times'],
           ['MMM-Ff-Evan-Roth-Red-Lines'],
+          ["alert", "clock", "calendar-private", "weather", "weather", "MMM-NINA", 'MMM-wiki'],
           ["updatenotification", "MMM-text-clock"],
         ],
         fixed: [
