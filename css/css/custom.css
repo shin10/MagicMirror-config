@@ -13,20 +13,23 @@ html {
   padding: 0;
 }
 
-/* body {
-  transform-origin: 0 0;
-  transform-style: preserve-3d;
-  transform: rotate3d(0, 0, 1, -90deg);
+@media (orientation: landscape) {
+  body {
+    transform-origin: 0 0;
+    transform-style: preserve-3d;
+    transform: rotate3d(0, 0, 1, -90deg);
 
-  margin: var(--gap-body-top) var(--gap-body-right) var(--gap-body-bottom) var(--gap-body-left);
-  position: absolute;
-  top: calc(100% - var(--gap-body-right) - var(--gap-body-left));
-  left: 0;
+    margin: var(--gap-body-top) var(--gap-body-right) var(--gap-body-bottom)
+      var(--gap-body-left);
+    position: absolute;
+    top: calc(100% - var(--gap-body-right) - var(--gap-body-left));
+    left: 0;
 
-  height: calc(100vw - var(--gap-body-right) - var(--gap-body-left));
-  width: calc(100vh - var(--gap-body-top) - var(--gap-body-bottom));
+    height: calc(100vw - var(--gap-body-right) - var(--gap-body-left));
+    width: calc(100vh - var(--gap-body-top) - var(--gap-body-bottom));
+  }
+
+  .MMM-PIR-sensor * {
+    transition: 1s color linear;
+  }
 }
-
-.MMM-PIR-sensor * {
-  transition: 1s color linear;
-} */
