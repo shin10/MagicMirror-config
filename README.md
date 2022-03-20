@@ -2,15 +2,18 @@
 ## install
 
 ```sh
-
+git clone https://github.com/shin10/MagicMirror-config.git
+# or
 git clone git@github.com:shin10/MagicMirror-config.git
 
+# config .env, stow config/css, install modules and start
 $(
   cd MagicMirror-config &&
   cp .env.template .env &&
   edit .env &&
   make stow &&
-  make install-modules
+  make install-modules &&
+  make start
 )
 ```
 
