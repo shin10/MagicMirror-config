@@ -1,13 +1,14 @@
-# PRIVATE! Magic Mirror² config
+# MagicMirror-config
 ## install
 
 ```sh
-cd ~/MagicMirror
 
-git clone git@github.com:shin10/.MM-config.git
+git clone git@github.com:shin10/MagicMirror-config.git
 
 $(
-  cd .MM-config &&
+  cd MagicMirror-config &&
+  cp .env.template .env &&
+  edit .env &&
   make stow &&
   make install-modules
 )
@@ -29,13 +30,15 @@ make save-modules
 
 ## .env/secrets
 
-Unfortunately environment variables can't be used that simple in `config.js` since it's used in FE and BE as well. See: https://github.com/MichMich/MagicMirror/issues/1756
+Unfortunately environment variables can't be used that simple in `config.js` without docker-compose since it's used in FE and BE as well. See: https://github.com/MichMich/MagicMirror/issues/1756
 
 Running the following startup script in the MagicMirror² base directory will use `envsubst` to substitute variables defined in`.env` within the content of `config.template.js` to create the final `config.js`.
 
 ```sh
-./mm.sh
+make start
 ```
+
+Alternatively you can put `mm.sh` and your `.env` in the MagicMirror root directory.
 
 ### practical tip
 
