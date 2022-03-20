@@ -11,6 +11,7 @@ html {
   height: 100vh;
   margin: 0;
   padding: 0;
+  touch-action: none;
 }
 
 @media (orientation: landscape) {
@@ -19,8 +20,7 @@ html {
     transform-style: preserve-3d;
     transform: rotate3d(0, 0, 1, -90deg);
 
-    margin: var(--gap-body-top) var(--gap-body-right) var(--gap-body-bottom)
-      var(--gap-body-left);
+    margin: var(--gap-body-top) var(--gap-body-right) var(--gap-body-bottom) var(--gap-body-left);
     position: absolute;
     top: calc(100% - var(--gap-body-right) - var(--gap-body-left));
     left: 0;
@@ -28,7 +28,7 @@ html {
     height: calc(100vw - var(--gap-body-right) - var(--gap-body-left));
     width: calc(100vh - var(--gap-body-top) - var(--gap-body-bottom));
   }
-
+  
   .MMM-PIR-sensor * {
     transition: 1s color linear;
   }

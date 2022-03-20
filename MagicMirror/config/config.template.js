@@ -9,6 +9,7 @@
  */
 
 let isRaspi = false;
+let tapTimeout = null;
 
 let config = {
 	// address: "0.0.0.0",     // Address to listen on, can be:
@@ -303,7 +304,7 @@ let config = {
 				// scrollAmount: 1600,
 				// loadingCursor: " _",
 				events: {
-					sender: "module_0_MMM-GroveGestures",
+					sender: ["MMM-Touch", "module_0_MMM-GroveGestures"],
 					CHEAT_SHEET_SCROLL_UP: "CHEAT_SHEET_SCROLL_UP",
 					CHEAT_SHEET_SCROLL_DOWN: "CHEAT_SHEET_SCROLL_DOWN",
 					CHEAT_SHEET_LIST_ITEM_PREVIOUS: "ARTICLE_PREVIOUS",
@@ -492,7 +493,7 @@ let config = {
 				height: "100vw",
 				width: "100vh",
 				events: {
-					sender: "module_0_MMM-GroveGestures",
+					sender: ["MMM-Touch", "module_0_MMM-GroveGestures"],
 					DIGITAL_RAIN_DROPS_INCREASE: "ARTICLE_NEXT",
 					DIGITAL_RAIN_DROPS_DECREASE: "ARTICLE_PREVIOUS",
 					DIGITAL_RAIN_MUTATIONS_INCREASE: "ARTICLE_NEXT",
@@ -559,7 +560,7 @@ let config = {
 				sequence: "default", // null, "random", "default", "reverse", "latest"
 				updateOnSuspension: true,
 				events: {
-					sender: "module_0_MMM-GroveGestures",
+					sender: ["MMM-Touch", "module_0_MMM-GroveGestures"],
 					COMIC_FIRST: "ARTICLE_FIRST",
 					COMIC_LATEST: "ARTICLE_LATEST",
 					COMIC_PREVIOUS: "ARTICLE_PREVIOUS",
@@ -590,7 +591,7 @@ let config = {
 				sequence: "default", // null, "random", "default", "reverse", "latest"
 				updateOnSuspension: true,
 				events: {
-					sender: "module_0_MMM-GroveGestures",
+					sender: ["MMM-Touch", "module_0_MMM-GroveGestures"],
 					COMIC_FIRST: "ARTICLE_FIRST",
 					COMIC_LATEST: "ARTICLE_LATEST",
 					COMIC_PREVIOUS: "ARTICLE_PREVIOUS",
@@ -681,7 +682,7 @@ let config = {
 
 		{
 			module: "MMM-Touch",
-			position: "top_right",
+			position: "bottom_right",
 			config: {
 				debug: true, // When true creates a more detailed log.
 				useDisplay: true, // When true displays the current command mode. Can be controlled at runtime via TOUCH_USE_DISPLAY.
@@ -691,8 +692,8 @@ let config = {
 				// "instanceId" == use module instance ids
 				// anything == reference to any other mode names in the config
 				threshold: {
-					moment_ms: 1000 * 0.5, // TAP and SWIPE should be quicker than this.
-					double_ms: 1000 * 0.75, // DOUBLE_TAP gap should be quicker than this. Set to zero to disable.
+					moment_ms: 500, // TAP and SWIPE should be quicker than this.
+					double_ms: 1000, // DOUBLE_TAP gap should be quicker than this. Set to zero to disable.
 					press_ms: 1000 * 3, // PRESS should be longer than this.
 					move_px: 50, // MOVE and SWIPE should go further than this.
 					pinch_px: 50, // Average of traveling distance of each finger should be more than this for PINCH
@@ -713,10 +714,20 @@ let config = {
 				gestureCommands: {
 					default: {
 						TAP_1: (commander) => {
-							commander.sendNotification("ARTICLE_NEXT");
+							if (tapTimeout) {
+								clearTimeout(tapTimeout);
+								tapTimeout = null;
+							}
+							tapTimeout = setTimeout(() => {
+								commander.sendNotification("ARTICLE_NEXT", 1);
+							}, 1000);
 						},
-						DOUBLE_TAP: (commander) => {
-							commander.sendNotification("ARTICLE_PREVIOUS");
+						DOUBLE_TAP_1: (commander) => {
+							if (tapTimeout) {
+								clearTimeout(tapTimeout);
+								tapTimeout = null;
+							}
+							commander.sendNotification("ARTICLE_PREVIOUS", 1);
 						},
 						MOVE_LEFT_1: (commander, gesture) => {
 							commander.sendNotification("PAGE_INCREMENT", 1);
@@ -724,11 +735,11 @@ let config = {
 						MOVE_RIGHT_1: (commander, gesture) => {
 							commander.sendNotification("PAGE_DECREMENT", 1);
 						},
-						MOVE_UP_1: (commander, gesture) => {
-							commander.sendNotification("CHEAT_SHEET_SCROLL_DOWN");
+						SWIPE_LEFT_1: (commander, gesture) => {
+							commander.sendNotification("PAGE_INCREMENT", 1);
 						},
-						MOVE_DOWN_1: (commander, gesture) => {
-							commander.sendNotification("CHEAT_SHEET_SCROLL_UP");
+						SWIPE_RIGHT_1: (commander, gesture) => {
+							commander.sendNotification("PAGE_DECREMENT", 1);
 						}
 					}
 				}, // See next section.
@@ -752,15 +763,16 @@ let config = {
 				rotationTime: 2 * 60 * 1000,
 				modules: [
 					// ["alert", "updatenotification", "MMM-Ff-digital-rain"],
-					["alert", "clock", "calendar-holidays", "MMM-Todoist", "MMM-JokeAPI", "newsfeed-times"],
 					["MMM-Ff-cht-sh"],
+					["alert", "clock", "calendar-holidays", "MMM-Todoist", "MMM-JokeAPI", "newsfeed-times"],
 					["alert", "clock", "calendar-private", "MMM-QRCode", "MMM-Ff-XKCD", "newsfeed-zeit"],
 					["alert", "clock", "calendar-holidays", "weather", "weather", "MMM-NINA", "MMM-Ff-Dilbert", "newsfeed-times"],
 					["MMM-Ff-Evan-Roth-Red-Lines"],
 					["alert", "clock", "calendar-private", "weather", "weather", "MMM-NINA", "MMM-wiki"],
 					["updatenotification", "MMM-text-clock"]
 				],
-				fixed: ["MMM-PIR-Sensor", "MMM-GroveGestures", "MMM-Touch", "MMM-SystemStats", "MMM-page-indicator"]
+				hidden: ["MMM-Touch"],
+				fixed: ["MMM-PIR-Sensor", "MMM-GroveGestures", "MMM-SystemStats", "MMM-page-indicator"]
 			}
 		}
 	]
