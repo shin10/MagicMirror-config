@@ -1,7 +1,4 @@
 # PRIVATE! Magic Mirror² config
-
-**CONTAINS API KEYS AND SECRETS!!**
-
 ## install
 
 ```sh
@@ -30,7 +27,7 @@ make update-modules
 make save-modules
 ```
 
-## .env
+## .env/secrets
 
 Unfortunately environment variables can't be used that simple in `config.js` since it's used in FE and BE as well. See: https://github.com/MichMich/MagicMirror/issues/1756
 
