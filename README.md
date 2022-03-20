@@ -1,7 +1,16 @@
 # MagicMirror-config
+
+[![ISC License](https://img.shields.io/badge/license-ISC-blue.svg)](https://choosealicense.com/licenses/isc)
+
+My personal configuration of [MagicMirror²](https://github.com/MichMich/MagicMirror) with some utility scripts.
+
 ## install
 
 ```sh
+# clone the magic mirror itself
+git clone https://github.com/MichMich/MagicMirror
+
+# then clone the config
 git clone https://github.com/shin10/MagicMirror-config.git
 # or
 git clone git@github.com:shin10/MagicMirror-config.git
