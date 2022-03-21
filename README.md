@@ -10,20 +10,33 @@ My personal configuration of [MagicMirror²](https://github.com/MichMich/MagicMi
 # clone the magic mirror itself
 git clone https://github.com/MichMich/MagicMirror
 
+
 # then clone the config
 git clone https://github.com/shin10/MagicMirror-config.git
 # or
 git clone git@github.com:shin10/MagicMirror-config.git
 
-# config .env, stow config/css, install modules and start
+
+# create/config .env (editing doesn't work in ssh sub-shell)
+cp -iu MagicMirror-config/.env.template MagicMirror-config/.env && nano MagicMirror-config/.env
+
+# stow config/css, install modules and start
 $(
   cd MagicMirror-config &&
-  cp .env.template .env &&
-  edit .env &&
   make stow &&
   make install-modules &&
   make start
 )
+
+# pm2 - autostart
+sudo npm install -g pm2
+pm2 startup
+# now run the prompted command
+
+# setup start the script
+pm2 start MagicMirror-config/mm.sh
+pm2 save
+pm2 show
 ```
 
 **Note:** # forked git@github.com:shin10/MMM-PIR-Sensor.git - postinstall: rebuilding electron might fail; if it does check ABI version
