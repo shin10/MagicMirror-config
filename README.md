@@ -33,7 +33,7 @@ sudo npm install -g pm2
 pm2 startup
 # now run the prompted command
 
-# setup start the script
+# setup autostart script
 pm2 start MagicMirror-config/mm.sh
 pm2 save
 pm2 show
