@@ -8,7 +8,7 @@
  * and https://docs.magicmirror.builders/modules/configuration.html
  */
 
-let isRaspi = false;
+let isRaspi = ${IS_RASPBERRY_PI};
 let tapTimeout = null;
 
 let config = {
