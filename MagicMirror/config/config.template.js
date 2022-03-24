@@ -682,22 +682,6 @@ let config = {
     },
 
     {
-      module: "MMM-SystemStats",
-      position: "bottom_right", // This can be any of the regions.
-      classes: "xsmall dimmed", // Add your own styling. OPTIONAL.
-      header: "System Stats", // Set the header text OPTIONAL
-      hiddenOnStartup: false,
-      // disabled: !isRaspi,
-      config: {
-        updateInterval: 10000, // every 10 seconds
-        align: "left", // align labels
-				alignValue: "right",
-        units: "metric", // default, metric, imperial
-        label: "icon",
-      },
-    },
-
-    {
       module: "MMM-Touch",
       position: "bottom_right",
       config: {
@@ -773,6 +757,24 @@ let config = {
       },
     },
 
+		{
+      module: "MMM-SystemStats",
+      position: "bottom", // This can be any of the regions.
+      classes: "xsmall dimmed", // Add your own styling. OPTIONAL.
+      header: false, // Set the header text OPTIONAL
+      hiddenOnStartup: false,
+      singleLine: true,
+      // disabled: !isRaspi,
+      config: {
+        updateInterval: 10000, // every 10 seconds
+        align: "left", // align labels
+        alignValue: "right",
+        units: "metric", // default, metric, imperial
+        label: "textAndIcon",
+        layout: "single-line"
+      },
+    },
+
     {
       module: "MMM-pages",
       config: {
@@ -823,8 +825,8 @@ let config = {
         fixed: [
           "MMM-PIR-Sensor",
           "MMM-GroveGestures",
-          "MMM-SystemStats",
           "MMM-page-indicator",
+          "MMM-SystemStats",
         ],
       },
     },
