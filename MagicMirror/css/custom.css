@@ -28,8 +28,16 @@ html {
     height: calc(100vw - var(--gap-body-right) - var(--gap-body-left));
     width: calc(100vh - var(--gap-body-top) - var(--gap-body-bottom));
   }
-  
+
   .MMM-PIR-sensor * {
     transition: 1s color linear;
   }
+}
+
+.module.hidden {
+  pointer-events: none;
+}
+
+.module:not(.hidden) {
+  pointer-events: auto;
 }
