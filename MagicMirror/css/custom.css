@@ -2,42 +2,8 @@
   font-size: 0.5em;
 }
 
-/**
- * rotate screen with css for performance reasons
- */
-
-html {
-  width: 100vw;
-  height: 100vh;
-  margin: 0;
-  padding: 0;
-  touch-action: none;
+.MMM-PIR-sensor * {
+  -webkit-transition: 1s color linear;
+  transition: 1s color linear;
 }
-
-@media (orientation: landscape) {
-  body {
-    transform-origin: 0 0;
-    transform-style: preserve-3d;
-    transform: rotate3d(0, 0, 1, -90deg);
-
-    margin: var(--gap-body-top) var(--gap-body-right) var(--gap-body-bottom) var(--gap-body-left);
-    position: absolute;
-    top: calc(100% - var(--gap-body-right) - var(--gap-body-left));
-    left: 0;
-
-    height: calc(100vw - var(--gap-body-right) - var(--gap-body-left));
-    width: calc(100vh - var(--gap-body-top) - var(--gap-body-bottom));
-  }
-
-  .MMM-PIR-sensor * {
-    transition: 1s color linear;
-  }
-}
-
-.module.hidden {
-  pointer-events: none;
-}
-
-.module:not(.hidden) {
-  pointer-events: auto;
-}
+/*# sourceMappingURL=custom.css.map */

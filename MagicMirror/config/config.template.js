@@ -808,6 +808,14 @@ let config = {
         rotationTime: 2 * 60 * 1000,
         modules: [
           // ["alert", "updatenotification", "MMM-FF-digital-rain"],
+          [
+            "alert",
+            "clock",
+            "calendar-private",
+            "MMM-QRCode",
+            "MMM-FF-XKCD",
+            "newsfeed-zeit",
+          ],
           ["MMM-FF-cht-sh"],
           [
             "alert",
@@ -817,14 +825,7 @@ let config = {
             "MMM-JokeAPI",
             "newsfeed-times",
           ],
-          [
-            "alert",
-            "clock",
-            "calendar-private",
-            "MMM-QRCode",
-            "MMM-FF-XKCD",
-            "newsfeed-zeit",
-          ],
+          ["MMM-FF-Evan-Roth-Red-Lines"],
           [
             "alert",
             "clock",
@@ -835,7 +836,6 @@ let config = {
             "MMM-FF-Dilbert",
             "newsfeed-times",
           ],
-          ["MMM-FF-Evan-Roth-Red-Lines"],
           [
             "alert",
             "clock",

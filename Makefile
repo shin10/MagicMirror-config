@@ -11,6 +11,7 @@ create-config-from-template: ## substitute vars in config.template.js with .envs
 	@if [ -f .env ]; then \
 		vars=$$(echo $$(cat .env | sed 's/#.*//g' | sed -r 's/(.*)=.*/$$\1/g' )); \
 		envsubst "'$$vars'" < ${mmroot}/config/config.template.js > ${mmroot}/config/config.js; \
+		envsubst "'$$vars'" < ${mmroot}/css/custom.template.scss > ${mmroot}/css/custom.scss; \
 	fi
 
 start: ## create config from template and start mirror
