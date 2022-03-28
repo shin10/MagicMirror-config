@@ -28,7 +28,11 @@ stow-delete: ## unstow config and styles
 install-modules: ## clone module repos and run npm install
 	@for i in $$(cat modules.list); do $$(cd ${mmroot}/modules && git clone $${i}); done;
 	@export modules=${mmroot}/modules/[^default]* && \
-	for i in $${modules}; do [ -f $${i}/package.json ] && $$(cd $${i} && npm i && npm audit fix); done;
+	for i in $${modules}; do [ -f $${i}/package.json ] && $$(cd $${i} && npm i && npm audit fix); done;e
+	# make sure python points to python3
+	@sudo ln -s -i python3 /usr/bin/python
+	#use raspberry version of grove gesture script
+	@if [ grep -q Raspbian /etc/os-release && -f ${mmroot}/modules/MMM-GroveGestures/py/grove_gesture_sensor.py.RPI ]; then mv ${mmroot}/modules/MMM-GroveGestures/py/grove_gesture_sensor.py.RPI ${mmroot}/modules/MMM-GroveGestures/py/grove_gesture_sensor.py ; fi
 
 update-modules: ## pull modules and re-run npm install
 	@export modules=${mmroot}/modules/[^default]* && \

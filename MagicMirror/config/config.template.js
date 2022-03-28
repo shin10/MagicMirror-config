@@ -761,6 +761,17 @@ let config = {
     },
 
     {
+      module: "MMM-FF-process-stats",
+      position: "bottom_right",
+      header: "process-stats",
+      hiddenOnStartup: false,
+      disabled: false,
+      config: {
+        updateInterval: 10000,
+      },
+    },
+
+    {
       module: "MMM-FF-StatsJS",
       position: "bottom_right",
       header: "stats.js",
@@ -853,6 +864,7 @@ let config = {
           "MMM-GroveGestures",
           "MMM-page-indicator",
           "MMM-FF-StatsJS",
+          "MMM-FF-process-stats",
           "MMM-SystemStats",
         ],
       },
