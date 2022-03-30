@@ -8,12 +8,11 @@
  * and https://docs.magicmirror.builders/modules/configuration.html
  */
 
-// eslint-disable-next-line any
 let isRaspi = "${IS_RASPBERRY_PI}".match(/^(0|false)?$/) === null;
 let tapTimeout = null;
 
 let config = {
-  // address: "0.0.0.0",     // Address to listen on, can be:
+  address: "0.0.0.0",     // Address to listen on, can be:
   // - "localhost", "127.0.0.1", "::1" to listen on loopback interface
   // - another specific IPv4/6 to listen on a specific interface
   // - "0.0.0.0", "::" to listen on any interface
