@@ -766,7 +766,7 @@ let config = {
       hiddenOnStartup: false,
       disabled: false,
       config: {
-        updateInterval: 10000,
+        updateInterval: 1000,
       },
     },
 
