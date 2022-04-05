@@ -49,9 +49,14 @@ git-diff: ## git status of all installed modules
 	export modules=${mmroot}/modules/[^default]* && \
 	for i in $${modules}; do cd $${i} && if [[ $$(git status --short) != "" ]]; then echo; echo -e "\e[7m$${i}\e[0m"; git diff; fi && cd $${CD}; done;
 
+git-diff-s: ## git diff of all installed modules w/o whitespace
+	@export CD=$(shell pwd); \
+	export modules=${mmroot}/modules/[^default]* && \
+	for i in $${modules}; do cd $${i} && if [[ $$(git status --short) != "" ]]; then echo; echo -e "\e[7m$${i}\e[0m"; git diff -s; fi && cd $${CD}; done;
+
 git-status: ## git status of all installed modules
 	@export CD=$$(pwd) && \
 	export modules=${mmroot}/modules/[^default]* && \
 	for i in $${modules}; do cd $${i} && if [[ $$(git status --short) != "" ]]; then echo; echo -e "\e[7m$${i}\e[0m"; git status --short; fi && cd $${CD}; done;
 
-PHONY: help stow stow-delete create-config-from-template start install-modules update-modules save-modules git-diff git-status
+PHONY: help stow stow-delete create-config-from-template start install-modules update-modules save-modules git-diff git-diff-s git-status
