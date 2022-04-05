@@ -336,6 +336,9 @@ let config = {
           "MMM-FF-digital-rain",
           "MMM-FF-Dilbert",
           "MMM-FF-Evan-Roth-Red-Lines",
+          "MMM-FF-process-stats",
+          "MMM-FF-StatsJS",
+          "MMM-SystemStats",
           "MMM-FF-XKCD",
           "MMM-PIR-Sensor", // forked to add event
         ],
