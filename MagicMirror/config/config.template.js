@@ -336,6 +336,9 @@ let config = {
           "MMM-FF-digital-rain",
           "MMM-FF-Dilbert",
           "MMM-FF-Evan-Roth-Red-Lines",
+          "MMM-FF-process-stats",
+          "MMM-FF-StatsJS",
+          "MMM-FF-tenor-gif",
           "MMM-FF-XKCD",
           "MMM-PIR-Sensor", // forked to add event
         ],
@@ -355,14 +358,34 @@ let config = {
       hiddenOnStartup: true,
       disabled: false,
       config: {
+        displayRepeatingCountTitle: true,
+        colored: true,
         calendars: [
-          {
-            symbol: "calendar-check",
-            url: "${SX_CALENDAR_PRIVATE_URL}",
-          },
           {
             symbol: "calendar-range",
             url: "${SX_CALENDAR_HOLIDAYS_URL}",
+            color: "#ffaa33",
+          },
+          {
+            symbol: "user-ninja",
+            url: "${SX_CALENDAR_PRIVATE_URL}",
+          },
+          {
+            symbol: "calendar-check",
+            url: "${SX_CALENDAR_FAMILY_URL}",
+          },
+          {
+            symbol: "person-breastfeeding",
+            url: "${SX_CALENDAR_MOM_URL}",
+          },
+          {
+            symbol: "user-tie",
+            url: "${SX_CALENDAR_DAD_URL}",
+          },
+          {
+            symbol: "cake-candles",
+            url: "${SX_CALENDAR_BIRTHDAYS_URL}",
+            repeatingCountTitle: "Geburtstag",
           },
         ],
       },
@@ -376,10 +399,33 @@ let config = {
       hiddenOnStartup: true,
       disabled: false,
       config: {
+        displayRepeatingCountTitle: true,
+        colored: true,
         calendars: [
           {
-            symbol: "calendar-check",
+            symbol: "user-ninja",
             url: "${SX_CALENDAR_PRIVATE_URL}",
+          },
+          {
+            symbol: "calendar-check",
+            url: "${SX_CALENDAR_FAMILY_URL}",
+            color: "#ffaa33",
+          },
+          {
+            symbol: "person-breastfeeding",
+            url: "${SX_CALENDAR_MOM_URL}",
+            color: "#aa00ff",
+          },
+          {
+            symbol: "user-tie",
+            url: "${SX_CALENDAR_DAD_URL}",
+            color: '#4555ff'
+          },
+          {
+            symbol: "cake-candles",
+            url: "${SX_CALENDAR_BIRTHDAYS_URL}",
+            repeatingCountTitle: "Geburtstag",
+            color: '#aaff33'
           },
         ],
       },
@@ -557,6 +603,32 @@ let config = {
       config: {
         category: "Programming",
         fetchInterval: 7 * 60 * 1000,
+      },
+    },
+
+    {
+      module: "MMM-FF-tenor-gif",
+      header: false,
+      position: "bottom",
+      hiddenOnStartup: true,
+      config: {
+        baseURL: "https://g.tenor.com/v1/random",
+        searchParams: {
+          key: "$TENOR_API_KEY",
+          q: "excited",
+          locale: "de_DE",
+          contentfilter: "off",
+          media_filter: "minimal", // basic | minimal
+          limit: 1
+        },
+        updateInterval: null,
+        imageMaxWidth: null,
+        imageMaxHeight: null,
+        updateOnSuspension: true,
+        events: {
+          sender: ["MMM-Touch", "module_0_MMM-GroveGestures"],
+          GIF_RANDOM: "ARTICLE_RANDOM",
+        }
       },
     },
 
@@ -766,7 +838,7 @@ let config = {
       hiddenOnStartup: false,
       disabled: false,
       config: {
-        updateInterval: 1000,
+        updateInterval: 10000,
       },
     },
 
@@ -818,6 +890,14 @@ let config = {
         rotationTime: 2 * 60 * 1000,
         modules: [
           // ["alert", "updatenotification", "MMM-FF-digital-rain"],
+          [
+            "alert",
+            "clock",
+            "calendar-private",
+            "MMM-QRCode",
+            "MMM-FF-tenor-gif",
+            "newsfeed-zeit",
+          ],
           [
             "alert",
             "clock",
