@@ -609,7 +609,7 @@ let config = {
     {
       module: "MMM-FF-tenor-gif",
       header: false,
-      position: "bottom",
+      position: "bottom_center",
       hiddenOnStartup: true,
       config: {
         baseURL: "https://g.tenor.com/v1/random",
@@ -634,7 +634,7 @@ let config = {
 
     {
       module: "MMM-FF-Dilbert",
-      position: "bottom",
+      position: "bottom_center",
       hiddenOnStartup: true,
       config: {
         header: "Dilbert",
@@ -664,7 +664,7 @@ let config = {
 
     {
       module: "MMM-FF-XKCD",
-      position: "bottom",
+      position: "bottom_center",
       hiddenOnStartup: true,
       config: {
         header: "xkcd",
