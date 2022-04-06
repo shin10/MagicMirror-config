@@ -36,7 +36,11 @@ install-modules: ## clone module repos and run npm install
 
 update-modules: ## pull modules and re-run npm install
 	@export modules=${mmroot}/modules/[^default]* && \
-	for i in $${modules}; do $$(cd $${i} && git pull; [ -f $${i}/package.json ] && $$(cd $${i} && npm i && npm audit fix)); done;
+	for i in $${modules}; do echo -e "\e[7m$${i}\e[0m"; echo $$(sh -c "cd $${i} && git pull; [ -f package.json ] && npm i && npm audit fix"); done;
+
+force-audit-fix-modules: ## pull modules and re-run npm install
+	@export modules=${mmroot}/modules/[^default]* && \
+	for i in $${modules}; do echo -e "\e[7m$${i}\e[0m"; echo $$(sh -c "cd $${i} [ -f package.json ] && npm audit fix --force"); done;
 
 save-modules: ## write list of the installed module repositories
 	@touch .tmp.modules.list;
