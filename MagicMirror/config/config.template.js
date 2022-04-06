@@ -12,7 +12,7 @@ let isRaspi = "${IS_RASPBERRY_PI}".match(/^(0|false)?$/) === null;
 let tapTimeout = null;
 
 let config = {
-  address: "0.0.0.0",     // Address to listen on, can be:
+  address: "0.0.0.0", // Address to listen on, can be:
   // - "localhost", "127.0.0.1", "::1" to listen on loopback interface
   // - another specific IPv4/6 to listen on a specific interface
   // - "0.0.0.0", "::" to listen on any interface
@@ -314,9 +314,9 @@ let config = {
           sender: ["MMM-Touch", "module_0_MMM-GroveGestures"],
           CHEAT_SHEET_SCROLL_UP: "CHEAT_SHEET_SCROLL_UP",
           CHEAT_SHEET_SCROLL_DOWN: "CHEAT_SHEET_SCROLL_DOWN",
-          CHEAT_SHEET_LIST_ITEM_PREVIOUS: "ARTICLE_PREVIOUS",
-          CHEAT_SHEET_LIST_ITEM_NEXT: "ARTICLE_NEXT",
-          CHEAT_SHEET_LIST_ITEM_RANDOM: "ARTICLE_RANDOM",
+          ARTICLE_PREVIOUS: "CHEAT_SHEET_LIST_ITEM_PREVIOUS",
+          ARTICLE_NEXT: "CHEAT_SHEET_LIST_ITEM_NEXT",
+          ARTICLE_RANDOM: "CHEAT_SHEET_LIST_ITEM_RANDOM",
         },
       },
     },
@@ -420,13 +420,13 @@ let config = {
           {
             symbol: "user-tie",
             url: "${SX_CALENDAR_DAD_URL}",
-            color: '#4555ff'
+            color: "#4555ff",
           },
           {
             symbol: "cake-candles",
             url: "${SX_CALENDAR_BIRTHDAYS_URL}",
             repeatingCountTitle: "Geburtstag",
-            color: '#aaff33'
+            color: "#aaff33",
           },
         ],
       },
@@ -553,11 +553,9 @@ let config = {
         width: "100vh",
         events: {
           sender: ["MMM-Touch", "module_0_MMM-GroveGestures"],
-          DIGITAL_RAIN_DROPS_INCREASE: "ARTICLE_NEXT",
-          DIGITAL_RAIN_DROPS_DECREASE: "ARTICLE_PREVIOUS",
-          DIGITAL_RAIN_MUTATIONS_INCREASE: "ARTICLE_NEXT",
-          DIGITAL_RAIN_MUTATIONS_DECREASE: "ARTICLE_PREVIOUS",
-          DIGITAL_RAIN_RESET: "ARTICLE_RANDOM",
+          ARTICLE_NEXT: "DIGITAL_RAIN_DROPS_INCREASE DIGITAL_RAIN_MUTATIONS_INCREASE",
+          ARTICLE_PREVIOUS: "DIGITAL_RAIN_DROPS_DECREASE DIGITAL_RAIN_MUTATIONS_DECREASE",
+          ARTICLE_RANDOM: "DIGITAL_RAIN_RESET",
         },
       },
     },
@@ -620,7 +618,7 @@ let config = {
           locale: "de_DE",
           contentfilter: "off",
           media_filter: "minimal", // basic | minimal
-          limit: 1
+          limit: 1,
         },
         updateInterval: null,
         imageMaxWidth: null,
@@ -628,8 +626,10 @@ let config = {
         updateOnSuspension: true,
         events: {
           sender: ["MMM-Touch", "module_0_MMM-GroveGestures"],
-          GIF_RANDOM: "ARTICLE_RANDOM",
-        }
+          ARTICLE_RANDOM: "GIF_RANDOM",
+          ARTICLE_NEXT: "GIF_RANDOM",
+          ARTICLE_PREVIOUS: "GIF_RANDOM",
+        },
       },
     },
 
@@ -652,11 +652,11 @@ let config = {
         updateOnSuspension: true,
         events: {
           sender: ["MMM-Touch", "module_0_MMM-GroveGestures"],
-          COMIC_FIRST: "ARTICLE_FIRST",
-          COMIC_LATEST: "ARTICLE_LATEST",
-          COMIC_PREVIOUS: "ARTICLE_PREVIOUS",
-          COMIC_NEXT: "ARTICLE_NEXT",
-          // COMIC_RANDOM: "ARTICLE_RANDOM",
+          ARTICLE_FIRST: "COMIC_FIRST",
+          ARTICLE_LATEST: "COMIC_LATEST",
+          ARTICLE_PREVIOUS: "COMIC_PREVIOUS",
+          ARTICLE_NEXT: "COMIC_NEXT",
+          ARTICLE_RANDOM: null
         },
         persistence: "electron",
         persistenceId: "dilbertModule1",
@@ -683,11 +683,11 @@ let config = {
         updateOnSuspension: true,
         events: {
           sender: ["MMM-Touch", "module_0_MMM-GroveGestures"],
-          COMIC_FIRST: "ARTICLE_FIRST",
-          COMIC_LATEST: "ARTICLE_LATEST",
-          COMIC_PREVIOUS: "ARTICLE_PREVIOUS",
-          COMIC_NEXT: "ARTICLE_NEXT",
-          // COMIC_RANDOM: "ARTICLE_RANDOM",
+          ARTICLE_FIRST: "COMIC_FIRST",
+          ARTICLE_LATEST: "COMIC_LATEST",
+          ARTICLE_PREVIOUS: "COMIC_PREVIOUS",
+          ARTICLE_NEXT: "COMIC_NEXT",
+          // ARTICLE_RANDOM: "COMIC_RANDOM",
         },
         persistence: "electron",
         persistenceId: "xkcdModule1",
