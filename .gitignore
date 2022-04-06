@@ -1,3 +1,3 @@
 .env
-MagicMirror/css/custom.(css|scss)(.map)?
-
+MagicMirror/css/custom.css*
+MagicMirror/css/custom.scss
