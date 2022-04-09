@@ -229,6 +229,10 @@ let config = {
         powerSavingNotification: false,
         powerSavingMessage: "Monitor will be turn Off by PIR module",
         runSimulator: false,
+        schedule: {
+          from: "07:00",
+          to: "23:00"
+        }
       },
     },
     {
