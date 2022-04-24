@@ -229,10 +229,6 @@ let config = {
         powerSavingNotification: false,
         powerSavingMessage: "Monitor will be turn Off by PIR module",
         runSimulator: false,
-        schedule: {
-          from: "07:00",
-          to: "23:00"
-        }
       },
     },
     {
@@ -557,8 +553,10 @@ let config = {
         width: "100vh",
         events: {
           sender: ["MMM-Touch", "module_0_MMM-GroveGestures"],
-          ARTICLE_NEXT: "DIGITAL_RAIN_DROPS_INCREASE DIGITAL_RAIN_MUTATIONS_INCREASE",
-          ARTICLE_PREVIOUS: "DIGITAL_RAIN_DROPS_DECREASE DIGITAL_RAIN_MUTATIONS_DECREASE",
+          ARTICLE_NEXT:
+            "DIGITAL_RAIN_DROPS_INCREASE DIGITAL_RAIN_MUTATIONS_INCREASE",
+          ARTICLE_PREVIOUS:
+            "DIGITAL_RAIN_DROPS_DECREASE DIGITAL_RAIN_MUTATIONS_DECREASE",
           ARTICLE_RANDOM: "DIGITAL_RAIN_RESET",
         },
       },
@@ -618,7 +616,35 @@ let config = {
         baseURL: "https://g.tenor.com/v1/random",
         searchParams: {
           key: "$TENOR_API_KEY",
-          q: "excited",
+          q: [
+            "excited",
+            "anime",
+            "ika musume",
+            "ben stiller",
+            "bill and ted",
+            "tigger",
+            "cowboy bebop",
+            "adventure time",
+            "bee and puppycat",
+            "bravest warriors",
+            "catbug",
+            "teen titans go",
+            "naruto",
+            "community",
+            "seinfeld",
+            "30 rock",
+            "unbreakable kimmy schmidt",
+            "what we do in the shadows",
+            "bobs burgers",
+            "modern family",
+            "arrested development",
+            "new girl",
+            "monty python",
+            "steins gate",
+            "brooklyn 99",
+            "mukbang",
+            "mongolian chop squad",
+          ],
           locale: "de_DE",
           contentfilter: "off",
           media_filter: "minimal", // basic | minimal
@@ -660,7 +686,7 @@ let config = {
           ARTICLE_LATEST: "COMIC_LATEST",
           ARTICLE_PREVIOUS: "COMIC_PREVIOUS",
           ARTICLE_NEXT: "COMIC_NEXT",
-          ARTICLE_RANDOM: null
+          ARTICLE_RANDOM: null,
         },
         persistence: "electron",
         persistenceId: "dilbertModule1",
