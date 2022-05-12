@@ -26,12 +26,14 @@ stow-delete: ## unstow config and styles
 	@stow -D -t ${mmroot} MagicMirror
 
 install-modules: ## clone module repos and run npm install
-	@for i in $$(cat modules.list); do $$(cd ${mmroot}/modules && git clone $${i}); done;
+	@$$(<modules.list xargs -d $$'\n' -t -i bash -c "cd ${mmroot}/modules && git clone -b {}")
 	@export modules=${mmroot}/modules/[^default]* && \
-	for i in $${modules}; do [ -f $${i}/package.json ] && echo $$(sh -c "cd $${i} && (npm i; npm audit fix)"); done;
+	for i in $${modules}; do echo -e "\e[7m$${i}\e[0m"; [ -f $${i}/package.json ] && echo $$(sh -c "cd $${i} && (npm i && npm audit fix)") && echo "OK" || echo ""; done;
 	# make sure python points to python3
+	@echo -e "\e[7mlink python to python3\e[0"
 	@sudo ln -s -i python3 /usr/bin/python
 	# use raspberry version of grove gesture script
+	@echo -e "\e[7mpick grove gesture script to match platform\e[0m"
 	@ if (grep -q Raspbian /etc/os-release) && [[ -f ${mmroot}/modules/MMM-GroveGestures/py/grove_gesture_sensor.py.RPI ]]; then echo "rename py file" && cp -u -i ${mmroot}/modules/MMM-GroveGestures/py/grove_gesture_sensor.py.RPI ${mmroot}/modules/MMM-GroveGestures/py/grove_gesture_sensor.py; fi;
 
 update-modules: ## pull modules and re-run npm install
@@ -40,12 +42,12 @@ update-modules: ## pull modules and re-run npm install
 
 force-audit-fix-modules: ## pull modules and re-run npm install
 	@export modules=${mmroot}/modules/[^default]* && \
-	for i in $${modules}; do echo -e "\e[7m$${i}\e[0m"; echo $$(sh -c "cd $${i} [ -f package.json ] && npm audit fix --force"); done;
+	for i in $${modules}; do echo -e "\e[7m$${i}\e[0m"; [ -f $${i}/package.json ] && echo $$(sh -c "cd $${i} && (npm audit fix --force)") && echo "done" || echo ""; done;
 
 save-modules: ## write list of the installed module repositories
 	@touch .tmp.modules.list;
 	@export modules=${mmroot}/modules/[^default]* && \
-	for i in $${modules}; do echo $$(cd $${i} && git remote get-url origin) >> .tmp.modules.list; done;
+	for i in $${modules}; do echo $$(cd $${i} && git branch --show-current --no-color && git remote get-url origin) >> .tmp.modules.list; done;
 	@mv -f .tmp.modules.list modules.list;
 
 git-diff: ## git status of all installed modules
