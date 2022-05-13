@@ -45,6 +45,25 @@ let config = {
 
 	modules: [
 		{
+			module: "MMM-FF-code-injector",
+			config:{
+				ignoreEventsIfSuspended: true,
+				position: "top",
+				scripts: {
+					START: {
+						ignoreIfSuspended: null,
+						func: () => { document.getElementsByTagName('html')[0].setAttribute('data-useragent', window.navigator.userAgent) },
+						args: [],
+					},
+				},
+				additionalStyles: ['css/electron.css'],
+				events: {
+					CODE_INJECTOR_EXEC: "CODE_INJECTOR_EXEC",
+					ARTICLE_RANDOM: "CODE_INJECTOR_EXEC"
+				}
+			},
+		},
+		{
 			module: "MMM-GroveGestures",
 			position: "bottom_right",
 			hiddenOnStartup: false,
@@ -333,10 +352,11 @@ let config = {
 					"MMM-FF-Evan-Roth-Red-Lines",
 					"MMM-FF-process-stats",
 					"MMM-FF-StatsJS",
-					"MMM-SystemStats",
 					"MMM-FF-tenor-gif",
 					"MMM-FF-XKCD",
-					"MMM-PIR-Sensor" // forked to add event
+					"MMM-PIR-Sensor", // forked to add event
+					"MMM-SystemStats", // forked for various changes
+					"MMM-wiki", // forked to replace interval with timeout
 				]
 			}
 		},
