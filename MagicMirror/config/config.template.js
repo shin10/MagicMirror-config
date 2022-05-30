@@ -288,6 +288,13 @@ let config = {
 		},
 
 		{
+			module: "MMM-FF-multigeiger",
+			position: "bottom_bar",
+			hiddenOnStartup: true,
+			disabled: false,
+		},
+
+		{
 			module: "MMM-FF-cht-sh",
 			position: "fullscreen_below",
 			header: "cht.sh",
@@ -315,7 +322,7 @@ let config = {
 					{ path: "cheat:tar" },
 					{ path: "tldr:tar" }
 				],
-				options: "q",
+				options: null,
 				style: "monokai",
 				sequence: null,
 				updateOnSuspension: true,
@@ -350,6 +357,7 @@ let config = {
 					"MMM-FF-digital-rain",
 					"MMM-FF-Dilbert",
 					"MMM-FF-Evan-Roth-Red-Lines",
+					"MMM-FF-multigeiger",
 					"MMM-FF-process-stats",
 					"MMM-FF-StatsJS",
 					"MMM-FF-tenor-gif",
@@ -942,6 +950,7 @@ let config = {
 				rotationTime: 2 * 60 * 1000,
 				modules: [
 					// ["alert", "updatenotification", "MMM-FF-digital-rain"],
+					["alert", "clock", "MMM-FF-multigeiger"],
 					["alert", "clock", "calendar-private", "MMM-QRCode", "MMM-FF-tenor-gif", "newsfeed-zeit"],
 					["alert", "clock", "calendar-private", "MMM-QRCode", "MMM-FF-XKCD", "newsfeed-zeit"],
 					["MMM-FF-cht-sh"],
