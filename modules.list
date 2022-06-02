@@ -15,7 +15,7 @@ main https://github.com/jalibu/MMM-NINA.git
 master https://github.com/MMRIZE/MMM-NotificationTrigger.git
 master https://github.com/edward-shen/MMM-page-indicator.git
 master https://github.com/edward-shen/MMM-pages.git
-master git@github.com:shin10/MMM-PIR-Sensor.git
+main git@github.com:shin10/MMM-PIR-Sensor.git
 master https://github.com/evghenix/MMM-QRCode.git
 main git@github.com:shin10/MMM-SystemStats.git
 master https://github.com/ngnijland/MMM-text-clock.git

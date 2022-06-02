@@ -46,7 +46,7 @@ let config = {
   modules: [
     {
       module: "MMM-FF-code-injector",
-      disabled: true,
+      disabled: false,
       config: {
         ignoreEventsIfSuspended: true,
         position: "top",
