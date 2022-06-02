@@ -1,0 +1,9 @@
+.newsfeed {
+  font-size: 0.5em;
+}
+
+.MMM-PIR-sensor * {
+  -webkit-transition: 1s color linear;
+  transition: 1s color linear;
+}
+/*# sourceMappingURL=custom.template.css.map */
