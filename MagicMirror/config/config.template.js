@@ -63,6 +63,7 @@ let config = {
         },
         additionalStyles: ["css/electron.css"],
         events: {
+          sender: ["MMM-Touch", "module_0_MMM-GroveGestures"],
           CODE_INJECTOR_EXEC: "CODE_INJECTOR_EXEC",
           ARTICLE_RANDOM: "CODE_INJECTOR_EXEC",
         },
@@ -362,15 +363,15 @@ let config = {
       config: {
         updateInterval: 24 * 60 * 60 * 1000,
         ignoreModules: [
-          "MMM-FF-cht-sh",
-          "MMM-FF-digital-rain",
-          "MMM-FF-Dilbert",
-          "MMM-FF-Evan-Roth-Red-Lines",
-          "MMM-FF-multigeiger",
-          "MMM-FF-process-stats",
-          "MMM-FF-StatsJS",
-          "MMM-FF-tenor-gif",
-          "MMM-FF-XKCD",
+          // "MMM-FF-cht-sh",
+          // "MMM-FF-digital-rain",
+          // "MMM-FF-Dilbert",
+          // "MMM-FF-Evan-Roth-Red-Lines",
+          // "MMM-FF-multigeiger",
+          // "MMM-FF-process-stats",
+          // "MMM-FF-StatsJS",
+          // "MMM-FF-tenor-gif",
+          // "MMM-FF-XKCD",
           "MMM-PIR-Sensor", // forked to add event
           "MMM-SystemStats", // forked for various changes
           "MMM-wiki", // forked to replace interval with timeout
@@ -508,7 +509,7 @@ let config = {
       disabled: false,
       config: {
         weatherProvider: "openweathermap",
-        type: "current",
+        type: "daily",
         location: "Augsburg",
         locationID: "2954172", //ID from http://bulk.openweathermap.org/sample/city.list.json.gz; unzip the gz file and find your city
         apiKey: "${OPEN_WEATHER_MAP_API_KEY}",
@@ -901,7 +902,7 @@ let config = {
 
     {
       module: "MMM-FF-multigeiger",
-      position: "right",
+      position: "left",
       header: "Multigeiger Deutschland",
       classes: "multigeiger-list-1",
       hiddenOnStartup: true,
@@ -909,11 +910,12 @@ let config = {
       config: {
         layout: "list-vertical",
         toggleUnitInterval: 20000,
+        timeout: 5000,
         sensorList: [
           {
             description: "Current Radiation",
             weight: 1,
-            type: "current", // list
+            type: "24hours",
             layout: "list-vertical",
             sensors: [
               { id: 31122, description: "Stuttgart" },
@@ -929,6 +931,54 @@ let config = {
             ],
           },
         ],
+        events: {
+          sender: ["MMM-Touch", "module_0_MMM-GroveGestures"],
+          SENSOR_LIST_ITEM_NEXT: "SENSOR_LIST_ITEM_NEXT",
+          ARTICLE_PREVIOUS: "SENSOR_LIST_ITEM_PREVIOUS",
+          ARTICLE_RANDOM: "SENSOR_LIST_ITEM_RANDOM",
+          ARTICLE_NEXT: "SENSOR_LIST_ITEM_NEXT",
+        },
+      },
+    },
+    {
+      module: "MMM-FF-multigeiger",
+      position: "center",
+      header: "Multigeiger Deutschland",
+      classes: "multigeiger-list-3",
+      hiddenOnStartup: true,
+      disabled: false,
+      config: {
+        layout: "charts",
+        toggleUnitInterval: 10 * 1000,
+        sensorList: [
+          {
+            description: "Current Radiation",
+            weight: 1,
+            type: "24hours",
+            layout: "charts",
+            width: '100vw',
+            height: '40vw',
+            sensors: [
+              // { id: 31122, description: "Stuttgart" },
+              // { id: 59328, description: "Bern" },
+              // { id: 70948, description: "Nürnberg" },
+              // { id: 44590, description: "Frankfurt" },
+              // { id: 65059, description: "Hamburg" },
+              // { id: 45879, description: "Dresden" },
+              { id: 71364, description: "Utrecht" },
+              { id: 71180, description: "Leipzig" },
+              { id: 70784, description: "Zürich" },
+              { id: 72366, description: "Augsburg" },
+            ],
+          },
+        ],
+        events: {
+          sender: ["MMM-Touch", "module_0_MMM-GroveGestures"],
+          SENSOR_LIST_ITEM_NEXT: "SENSOR_LIST_ITEM_NEXT",
+          ARTICLE_PREVIOUS: "SENSOR_LIST_ITEM_PREVIOUS",
+          ARTICLE_RANDOM: "SENSOR_LIST_ITEM_RANDOM",
+          ARTICLE_NEXT: "SENSOR_LIST_ITEM_NEXT",
+        },
       },
     },
 
@@ -945,7 +995,7 @@ let config = {
           {
             description: "Current Radiation",
             weight: 1,
-            type: "current", // list
+            type: "24hours",
             layout: "list-horizontal",
             toggleUnitInterval: 10000,
             sensors: [
@@ -960,7 +1010,7 @@ let config = {
           {
             description: "Current Radiation",
             weight: 1,
-            type: "current", // list
+            type: "24hours",
             layout: "list-horizontal",
             toggleUnitInterval: 4000,
             sensors: [
@@ -971,6 +1021,13 @@ let config = {
             ],
           },
         ],
+        events: {
+          sender: ["MMM-Touch", "module_0_MMM-GroveGestures"],
+          SENSOR_LIST_ITEM_NEXT: "SENSOR_LIST_ITEM_NEXT",
+          ARTICLE_PREVIOUS: "SENSOR_LIST_ITEM_PREVIOUS",
+          ARTICLE_RANDOM: "SENSOR_LIST_ITEM_RANDOM",
+          ARTICLE_NEXT: "SENSOR_LIST_ITEM_NEXT",
+        },
       },
     },
 
@@ -1042,7 +1099,8 @@ let config = {
         rotationTime: 2 * 60 * 1000,
         modules: [
           // ["alert", "updatenotification", "MMM-FF-digital-rain"],
-          ["alert", "clock", "multigeiger-list-1", "multigeiger-list-2"],
+          ["alert", "clock", "multigeiger-list-1", "multigeiger-list-2", "multigeiger-list-3"],
+          // ["alert", "clock", "multigeiger-list-3"],
           [
             "alert",
             "clock",
