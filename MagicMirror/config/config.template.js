@@ -221,13 +221,37 @@ let config = {
             },
             FORWARD: {
               notificationExec: {
-                notification: "CHEAT_SHEET_SCROLL_DOWN",
+                notification: "ARTICLE_SCROLL_DOWN",
                 payload: null,
               },
             },
             BACKWARD: {
               notificationExec: {
-                notification: "CHEAT_SHEET_SCROLL_UP",
+                notification: "ARTICLE_SCROLL_UP",
+                payload: null,
+              },
+            },
+            "FORWARD-UP": {
+              notificationExec: {
+                notification: "SENSOR_LIST_LAYOUT_NEXT",
+                payload: null,
+              },
+            },
+            "FORWARD-DOWN": {
+              notificationExec: {
+                notification: "SENSOR_LIST_LAYOUT_PREVIOUS",
+                payload: null,
+              },
+            },
+            "FORWARD-LEFT": {
+              notificationExec: {
+                notification: "SENSOR_LIST_DATE_FORWARDS",
+                payload: null,
+              },
+            },
+            "FORWARD-RIGHT": {
+              notificationExec: {
+                notification: "SENSOR_LIST_DATE_BACKWARDS",
                 payload: null,
               },
             },
@@ -348,6 +372,8 @@ let config = {
           ARTICLE_PREVIOUS: "CHEAT_SHEET_LIST_ITEM_PREVIOUS",
           ARTICLE_NEXT: "CHEAT_SHEET_LIST_ITEM_NEXT",
           ARTICLE_RANDOM: "CHEAT_SHEET_LIST_ITEM_RANDOM",
+          ARTICLE_SCROLL_UP: "CHEAT_SHEET_SCROLL_UP",
+          ARTICLE_SCROLL_DOWN: "CHEAT_SHEET_SCROLL_DOWN",
         },
       },
     },
@@ -894,6 +920,18 @@ let config = {
             SWIPE_RIGHT_1: (commander, gesture) => {
               commander.sendNotification("PAGE_DECREMENT", 1);
             },
+            MOVE_UP_1: (commander, gesture) => {
+              commander.sendNotification("MOVE_UP_1", 1);
+            },
+            MOVE_DOWN_1: (commander, gesture) => {
+              commander.sendNotification("MOVE_DOWN_1", 1);
+            },
+            SWIPE_UP_1: (commander, gesture) => {
+              commander.sendNotification("SWIPE_UP_1", 1);
+            },
+            SWIPE_DOWN_1: (commander, gesture) => {
+              commander.sendNotification("SWIPE_DOWN_1", 1);
+            },
           },
         }, // See next section.
         onNotification: () => {}, // Special callback function for when you need something on notification received. Usually not needed.
@@ -915,7 +953,7 @@ let config = {
           {
             description: "Current Radiation",
             weight: 1,
-            type: "24hours",
+            type: "day",
             // layout: "list-vertical",
             sensors: [
               { id: 31122, description: "Stuttgart" },
@@ -937,10 +975,17 @@ let config = {
           ARTICLE_PREVIOUS: "SENSOR_LIST_ITEM_PREVIOUS",
           ARTICLE_RANDOM: "SENSOR_LIST_ITEM_RANDOM",
           ARTICLE_NEXT: "SENSOR_LIST_ITEM_NEXT",
+
+          SENSOR_LIST_DATE_BACKWARDS: "SENSOR_LIST_DATE_BACKWARDS",
+          SENSOR_LIST_DATE_FORWARDS: "SENSOR_LIST_DATE_FORWARDS",
+          SENSOR_LIST_DATE_RANGE_ZOOM_IN: "SENSOR_LIST_DATE_RANGE_ZOOM_IN",
+          SENSOR_LIST_DATE_RANGE_ZOOM_OUT: "SENSOR_LIST_DATE_RANGE_ZOOM_OUT",
+          SENSOR_LIST_LAYOUT_PREVIOUS: "SENSOR_LIST_LAYOUT_PREVIOUS",
+          SENSOR_LIST_LAYOUT_NEXT: "SENSOR_LIST_LAYOUT_NEXT",
         },
       },
     },
-    
+
     {
       module: "MMM-FF-multigeiger",
       position: "bottom_bar",
@@ -948,24 +993,56 @@ let config = {
       classes: "multigeiger-list-2",
       hiddenOnStartup: true,
       disabled: false,
+      avgTime: 1,
+      longAVG: 1,
       config: {
         layout: "list-horizontal",
         sensorList: [
-          {
-            description: "Current Radiation",
-            weight: 1,
-            type: "month",
-            // layout: "list-vertical",
-            toggleUnitInterval: 10000,
-            sensors: [
-              { id: 31122, description: "Stuttgart" },
-              { id: 59328, description: "Bern" },
-              { id: 70948, description: "Nürnberg" },
-              // { id: 44590, description: "Frankfurt" },
-              { id: 65059, description: "Hamburg" },
-              { id: 45879, description: "Dresden" },
-            ],
-          },
+          // {
+          //   description: "Current Radiation",
+          //   weight: 1,
+          //   type: "day",
+          //   // layout: "list-vertical",
+          //   toggleUnitInterval: 10000,
+          //   sensors: [
+          //     { id: 31122, description: "Stuttgart" },
+          //     { id: 59328, description: "Bern" },
+          //     { id: 70948, description: "Nürnberg" },
+          //     // { id: 44590, description: "Frankfurt" },
+          //     { id: 65059, description: "Hamburg" },
+          //     { id: 45879, description: "Dresden" },
+          //   ],
+          // },
+          // {
+          //   description: "Current Radiation",
+          //   weight: 1,
+          //   type: "week",
+          //   // layout: "list-vertical",
+          //   toggleUnitInterval: 10000,
+          //   sensors: [
+          //     { id: 31122, description: "Stuttgart" },
+          //     { id: 59328, description: "Bern" },
+          //     { id: 70948, description: "Nürnberg" },
+          //     // { id: 44590, description: "Frankfurt" },
+          //     { id: 65059, description: "Hamburg" },
+          //     { id: 45879, description: "Dresden" },
+          //   ],
+          // },
+          // {
+          //   description: "Current Radiation",
+          //   weight: 1,
+          //   type: "month",
+          //   // layout: "list-vertical",
+          //   toggleUnitInterval: 10000,
+          //   sensors: [
+          //     { id: 31122, description: "Stuttgart" },
+          //     { id: 59328, description: "Bern" },
+          //     { id: 70948, description: "Nürnberg" },
+          //     // { id: 44590, description: "Frankfurt" },
+          //     { id: 65059, description: "Hamburg" },
+          //     { id: 45879, description: "Dresden" },
+          //   ],
+          // },
           {
             description: "Current Radiation",
             weight: 1,
@@ -983,9 +1060,17 @@ let config = {
         events: {
           sender: ["MMM-Touch", "module_0_MMM-GroveGestures"],
           SENSOR_LIST_ITEM_NEXT: "SENSOR_LIST_ITEM_NEXT",
-          ARTICLE_PREVIOUS: "SENSOR_LIST_ITEM_PREVIOUS",
+          ARTICLE_PREVIOUS: "SENSOR_LIST_LAYOUT_NEXT",
           ARTICLE_RANDOM: "SENSOR_LIST_ITEM_RANDOM",
-          ARTICLE_NEXT: "SENSOR_LIST_ITEM_NEXT",
+          ARTICLE_NEXT: "SENSOR_LIST_DATE_RANGE_ZOOM_OUT",
+          SENSOR_LIST_DATE_BACKWARDS: "SENSOR_LIST_DATE_BACKWARDS",
+          SENSOR_LIST_DATE_FORWARDS: "SENSOR_LIST_DATE_FORWARDS",
+          SENSOR_LIST_DATE_RANGE_ZOOM_IN: "SENSOR_LIST_DATE_RANGE_ZOOM_IN",
+          SENSOR_LIST_DATE_RANGE_ZOOM_OUT: "SENSOR_LIST_DATE_RANGE_ZOOM_OUT",
+          SENSOR_LIST_LAYOUT_PREVIOUS: "SENSOR_LIST_LAYOUT_PREVIOUS",
+          SENSOR_LIST_LAYOUT_NEXT: "SENSOR_LIST_LAYOUT_NEXT",
+          SWIPE_UP_1: "SENSOR_LIST_DATE_RANGE_ZOOM_IN",
+          SWIPE_DOWN_1: "SENSOR_LIST_LAYOUT_NEXT",
         },
       },
     },
@@ -1005,10 +1090,10 @@ let config = {
           {
             description: "Current Radiation",
             weight: 1,
-            type: "24hours",
+            type: "day",
             layout: "charts",
-            width: '100vw',
-            height: '40vw',
+            width: "100vw",
+            height: "40vw",
             sensors: [
               // { id: 31122, description: "Stuttgart" },
               // { id: 59328, description: "Bern" },
@@ -1101,7 +1186,13 @@ let config = {
         rotationTime: 2 * 60 * 1000,
         modules: [
           // ["alert", "updatenotification", "MMM-FF-digital-rain"],
-          ["alert", "clock", "multigeiger-list-1", "multigeiger-list-2", "multigeiger-list-3"],
+          [
+            "alert",
+            "clock",
+            "multigeiger-list-1",
+            "multigeiger-list-2",
+            "multigeiger-list-3",
+          ],
           // ["alert", "clock", "multigeiger-list-3"],
           [
             "alert",
