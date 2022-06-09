@@ -18,4 +18,9 @@ html[data-useragent*="Electron"] {
     height: calc(100vw - var(--gap-body-right) - var(--gap-body-left));
     width: calc(100vh - var(--gap-body-top) - var(--gap-body-bottom));
   }
+
+  .MMM-FF-multigeiger .charts .graph-wrapper {
+    height: calc(100vw - var(--gap-body-left) - var(--gap-body-right));
+    width: calc(40vw - var(--gap-body-left) - var(--gap-body-right));
+}
 }
