@@ -63,7 +63,7 @@ let config = {
         },
         additionalStyles: ["css/electron.css"],
         events: {
-          sender: ["MMM-Touch", "module_0_MMM-GroveGestures"],
+          sender: ["MMM-Touch", "MMM-GroveGestures"],
           CODE_INJECTOR_EXEC: "CODE_INJECTOR_EXEC",
           ARTICLE_RANDOM: "CODE_INJECTOR_EXEC",
         },
@@ -155,20 +155,14 @@ let config = {
             },
             CLOCKWISE: {
               notificationExec: {
-                notification: "ARTICLE_RANDOM",
+                notification: "CLOCKWISE",
                 payload: null,
               },
             },
             ANTICLOCKWISE: {
               notificationExec: {
-                notification: "PAUSE_ROTATION",
+                notification: "ANTICLOCKWISE",
                 payload: null,
-              },
-              moduleExec: {
-                module: [],
-                exec: (module, gestures) => {
-                  module.hide(1000, null, { lockstring: "GESTURE" });
-                },
               },
             },
             LEFT: {
@@ -221,37 +215,13 @@ let config = {
             },
             FORWARD: {
               notificationExec: {
-                notification: "ARTICLE_SCROLL_DOWN",
+                notification: "FORWARD",
                 payload: null,
               },
             },
             BACKWARD: {
               notificationExec: {
-                notification: "ARTICLE_SCROLL_UP",
-                payload: null,
-              },
-            },
-            "FORWARD-UP": {
-              notificationExec: {
-                notification: "SENSOR_LIST_LAYOUT_NEXT",
-                payload: null,
-              },
-            },
-            "FORWARD-DOWN": {
-              notificationExec: {
-                notification: "SENSOR_LIST_LAYOUT_PREVIOUS",
-                payload: null,
-              },
-            },
-            "FORWARD-LEFT": {
-              notificationExec: {
-                notification: "SENSOR_LIST_DATE_FORWARDS",
-                payload: null,
-              },
-            },
-            "FORWARD-RIGHT": {
-              notificationExec: {
-                notification: "SENSOR_LIST_DATE_BACKWARDS",
+                notification: "BACKWARD",
                 payload: null,
               },
             },
@@ -366,14 +336,14 @@ let config = {
         // scrollAmount: 1600,
         // loadingCursor: " _",
         events: {
-          sender: ["MMM-Touch", "module_0_MMM-GroveGestures"],
+          sender: ["MMM-Touch", "MMM-GroveGestures"],
           CHEAT_SHEET_SCROLL_UP: "CHEAT_SHEET_SCROLL_UP",
           CHEAT_SHEET_SCROLL_DOWN: "CHEAT_SHEET_SCROLL_DOWN",
           ARTICLE_PREVIOUS: "CHEAT_SHEET_LIST_ITEM_PREVIOUS",
           ARTICLE_NEXT: "CHEAT_SHEET_LIST_ITEM_NEXT",
           ARTICLE_RANDOM: "CHEAT_SHEET_LIST_ITEM_RANDOM",
-          ARTICLE_SCROLL_UP: "CHEAT_SHEET_SCROLL_UP",
-          ARTICLE_SCROLL_DOWN: "CHEAT_SHEET_SCROLL_DOWN",
+          BACKWARD: "CHEAT_SHEET_SCROLL_UP",
+          FORWARD: "CHEAT_SHEET_SCROLL_DOWN",
         },
       },
     },
@@ -625,7 +595,7 @@ let config = {
         height: "100vw",
         width: "100vh",
         events: {
-          sender: ["MMM-Touch", "module_0_MMM-GroveGestures"],
+          sender: ["MMM-Touch", "MMM-GroveGestures"],
           ARTICLE_NEXT:
             "DIGITAL_RAIN_DROPS_INCREASE DIGITAL_RAIN_MUTATIONS_INCREASE",
           ARTICLE_PREVIOUS:
@@ -728,7 +698,7 @@ let config = {
         imageMaxHeight: null,
         updateOnSuspension: true,
         events: {
-          sender: ["MMM-Touch", "module_0_MMM-GroveGestures"],
+          sender: ["MMM-Touch", "MMM-GroveGestures"],
           ARTICLE_RANDOM: "GIF_RANDOM",
           ARTICLE_NEXT: "GIF_RANDOM",
           ARTICLE_PREVIOUS: "GIF_RANDOM",
@@ -754,7 +724,7 @@ let config = {
         sequence: "default", // null, "random", "default", "reverse", "latest"
         updateOnSuspension: true,
         events: {
-          sender: ["MMM-Touch", "module_0_MMM-GroveGestures"],
+          sender: ["MMM-Touch", "MMM-GroveGestures"],
           ARTICLE_FIRST: "COMIC_FIRST",
           ARTICLE_LATEST: "COMIC_LATEST",
           ARTICLE_PREVIOUS: "COMIC_PREVIOUS",
@@ -785,7 +755,7 @@ let config = {
         sequence: "default", // null, "random", "default", "reverse", "latest"
         updateOnSuspension: true,
         events: {
-          sender: ["MMM-Touch", "module_0_MMM-GroveGestures"],
+          sender: ["MMM-Touch", "MMM-GroveGestures"],
           ARTICLE_FIRST: "COMIC_FIRST",
           ARTICLE_LATEST: "COMIC_LATEST",
           ARTICLE_PREVIOUS: "COMIC_PREVIOUS",
@@ -970,7 +940,7 @@ let config = {
           },
         ],
         events: {
-          sender: ["MMM-Touch", "module_0_MMM-GroveGestures"],
+          sender: ["MMM-Touch", "MMM-GroveGestures"],
           SENSOR_LIST_ITEM_NEXT: "SENSOR_LIST_ITEM_NEXT",
           ARTICLE_PREVIOUS: "SENSOR_LIST_ITEM_PREVIOUS",
           ARTICLE_RANDOM: "SENSOR_LIST_ITEM_RANDOM",
@@ -996,7 +966,8 @@ let config = {
       avgTime: 1,
       longAVG: 1,
       config: {
-        layout: "list-horizontal",
+        layout: "charts",
+        type: "week",
         sensorList: [
           // {
           //   description: "Current Radiation",
@@ -1028,26 +999,9 @@ let config = {
           //     { id: 45879, description: "Dresden" },
           //   ],
           // },
-          // {
-          //   description: "Current Radiation",
-          //   weight: 1,
-          //   type: "month",
-          //   // layout: "list-vertical",
-          //   toggleUnitInterval: 10000,
-          //   sensors: [
-          //     { id: 31122, description: "Stuttgart" },
-          //     { id: 59328, description: "Bern" },
-          //     { id: 70948, description: "Nürnberg" },
-          //     // { id: 44590, description: "Frankfurt" },
-          //     { id: 65059, description: "Hamburg" },
-          //     { id: 45879, description: "Dresden" },
-          //   ],
-          // },
           {
             description: "Current Radiation",
             weight: 1,
-            type: "week",
-            layout: "charts",
             toggleUnitInterval: 4000,
             sensors: [
               { id: 71364, description: "Utrecht" },
@@ -1056,19 +1010,30 @@ let config = {
               { id: 72366, description: "Augsburg" },
             ],
           },
+          {
+            description: "Current Radiation",
+            weight: 1,
+            toggleUnitInterval: 10000,
+            sensors: [
+              { id: 31122, description: "Stuttgart" },
+              { id: 59328, description: "Bern" },
+              { id: 70948, description: "Nürnberg" },
+              // { id: 44590, description: "Frankfurt" },
+              { id: 65059, description: "Hamburg" },
+              { id: 45879, description: "Dresden" },
+            ],
+          },
         ],
         events: {
-          sender: ["MMM-Touch", "module_0_MMM-GroveGestures"],
-          SENSOR_LIST_ITEM_NEXT: "SENSOR_LIST_ITEM_NEXT",
-          ARTICLE_PREVIOUS: "SENSOR_LIST_LAYOUT_NEXT",
-          ARTICLE_RANDOM: "SENSOR_LIST_ITEM_RANDOM",
-          ARTICLE_NEXT: "SENSOR_LIST_DATE_RANGE_ZOOM_OUT",
-          SENSOR_LIST_DATE_BACKWARDS: "SENSOR_LIST_DATE_BACKWARDS",
-          SENSOR_LIST_DATE_FORWARDS: "SENSOR_LIST_DATE_FORWARDS",
-          SENSOR_LIST_DATE_RANGE_ZOOM_IN: "SENSOR_LIST_DATE_RANGE_ZOOM_IN",
-          SENSOR_LIST_DATE_RANGE_ZOOM_OUT: "SENSOR_LIST_DATE_RANGE_ZOOM_OUT",
-          SENSOR_LIST_LAYOUT_PREVIOUS: "SENSOR_LIST_LAYOUT_PREVIOUS",
-          SENSOR_LIST_LAYOUT_NEXT: "SENSOR_LIST_LAYOUT_NEXT",
+          sender: ["MMM-Touch", "MMM-GroveGestures"],
+
+          ARTICLE_PREVIOUS: "SENSOR_LIST_ITEM_PREVIOUS",
+          ARTICLE_NEXT: "SENSOR_LIST_ITEM_NEXT",
+          ANTICLOCKWISE: "SENSOR_LIST_DATE_BACKWARDS",
+          CLOCKWISE: "SENSOR_LIST_DATE_FORWARDS",
+          FORWARD: "SENSOR_LIST_DATE_RANGE_ZOOM_IN",
+          BACKWARD: "SENSOR_LIST_LAYOUT_NEXT",
+
           SWIPE_UP_1: "SENSOR_LIST_DATE_RANGE_ZOOM_IN",
           SWIPE_DOWN_1: "SENSOR_LIST_LAYOUT_NEXT",
         },
@@ -1109,7 +1074,7 @@ let config = {
           },
         ],
         events: {
-          sender: ["MMM-Touch", "module_0_MMM-GroveGestures"],
+          sender: ["MMM-Touch", "MMM-GroveGestures"],
           SENSOR_LIST_ITEM_NEXT: "SENSOR_LIST_ITEM_NEXT",
           ARTICLE_PREVIOUS: "SENSOR_LIST_ITEM_PREVIOUS",
           ARTICLE_RANDOM: "SENSOR_LIST_ITEM_RANDOM",
