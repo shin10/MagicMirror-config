@@ -1,19 +1,14 @@
-html[data-useragent*="Electron"] {
+html[data-useragent*=Electron] {
   width: 100vw;
   height: 100vh;
   margin: 0;
   padding: 0;
-  -ms-touch-action: none;
-      touch-action: none;
+  touch-action: none;
 }
-
-html[data-useragent*="Electron"] body {
-  -webkit-transform-origin: 0 0;
-          transform-origin: 0 0;
-  -webkit-transform-style: preserve-3d;
-          transform-style: preserve-3d;
-  -webkit-transform: rotate3d(0, 0, 1, -90deg);
-          transform: rotate3d(0, 0, 1, -90deg);
+html[data-useragent*=Electron] body {
+  transform-origin: 0 0;
+  transform-style: preserve-3d;
+  transform: rotate3d(0, 0, 1, -90deg);
   margin: var(--gap-body-top) var(--gap-body-right) var(--gap-body-bottom) var(--gap-body-left);
   position: absolute;
   top: calc(100% - var(--gap-body-right) - var(--gap-body-left));
@@ -21,9 +16,7 @@ html[data-useragent*="Electron"] body {
   height: calc(100vw - var(--gap-body-right) - var(--gap-body-left));
   width: calc(100vh - var(--gap-body-top) - var(--gap-body-bottom));
 }
-
-html[data-useragent*="Electron"] .MMM-FF-multigeiger .charts .graph-wrapper {
+html[data-useragent*=Electron] .MMM-FF-multigeiger .charts .graph-wrapper {
   width: calc(100vh - var(--gap-body-left) - var(--gap-body-right));
   height: calc(40vh - var(--gap-body-left) - var(--gap-body-right));
-}
-/*# sourceMappingURL=electron.css.map */
+}/*# sourceMappingURL=electron.css.map */

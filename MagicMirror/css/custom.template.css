@@ -8,7 +8,11 @@
 }
 
 .MMM-PIR-sensor * {
-  -webkit-transition: 1s color linear;
   transition: 1s color linear;
 }
-/*# sourceMappingURL=custom.template.css.map */
+
+#spotify:not(.mini) #SPOTIFY_COVER_IMAGE[src="./modules/MMM-Spotify/resources/spotify-xxl.png"] {
+  max-width: 20%;
+  max-height: 20%;
+  filter: brightness(0.5);
+}/*# sourceMappingURL=custom.template.css.map */

@@ -10,3 +10,11 @@
 .MMM-PIR-sensor * {
   transition: 1s color linear;
 }
+
+#spotify:not(.mini) {
+  #SPOTIFY_COVER_IMAGE[src="./modules/MMM-Spotify/resources/spotify-xxl.png"] {
+    max-width: 20%;
+    max-height: 20%;
+    filter: brightness(0.5);
+  }
+}

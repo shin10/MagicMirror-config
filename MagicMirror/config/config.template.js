@@ -909,6 +909,68 @@ let config = {
     },
 
     {
+      module: "MMM-FF-Genius-Lyrics",
+      position: "fullscreen_below",
+      header: "Genius Lyrics",
+      classes: "custom-genius-lyrics",
+      hiddenOnStartup: true,
+      disabled: false,
+      config: {
+        apiKey:"${GENIUS_LYRICS_CLIENT_ACCESS_TOKEN}", // CLIENT ACCESS TOKEN from https://genius.com/api-clients
+        lyricsClasses: ["medium", "bold", "italic"],
+      },
+    },
+    
+    {
+      module: "MMM-Spotify",
+      position: "bottom_right", // "bottom_bar" or "top_bar" for miniBar
+      config: {
+        debug: false, // debug mode
+        style: "mini", // "default" or "mini" available (inactive for miniBar)
+        moduleWidth: 360, // width of the module in px
+        control: "hidden", // "default" or "hidden"
+        showAlbumLabel: true, // if you want to show the label for the current song album
+        showVolumeLabel: true, // if you want to show the label for the current volume
+        showAccountName: false, // also show the current account name in the device label; usefull for multi account setup
+        showAccountButton: false, // if you want to show the "switch account" control button
+        showDeviceButton: false, // if you want to show the "switch device" control button
+        useExternalModal: false, // if you want to use MMM-Modal for account and device popup selection instead of the build-in one (which is restricted to the album image size)
+        updateInterval: 1000, // update interval when playing
+        idleInterval: 30000, // update interval on idle
+        defaultAccount: 0, // default account number, attention : 0 is the first account
+        defaultDevice: null, // optional - if you want the "SPOTIFY_PLAY" notification to also work from "idle" status, you have to define your default device here (by name)
+        allowDevices: [], //If you want to limit devices to display info, use this. f.e. allowDevices: ["RASPOTIFY", "My Home speaker"],
+        onStart: null, // disable onStart feature with `null`
+        // if you want to send custom notifications when suspending the module, f.e. switch MMM-Touch to a different "mode"
+        notificationsOnSuspend: [
+          {
+            notification: "TOUCH_SET_MODE",
+            payload: "myNormalMode",
+          },
+          {
+            notification: "WHATEVERYOUWANT",
+            payload: "sendMe",
+          },
+        ],
+        // if you want to send custom notifications when resuming the module, f.e. switch MMM-Touch to a different "mode"
+        notificationsOnResume: [
+          {
+            notification: "TOUCH_SET_MODE",
+            payload: "mySpotifyControlMode",
+          },
+        ],
+        deviceDisplay: "Listening on", // text to display in the device block (default style only)
+        volumeSteps: 5, // in percent, the steps you want to increase or decrese volume when reacting on the "SPOTIFY_VOLUME_{UP,DOWN}" notifications
+        // miniBar is no longer supported, use at your own "risk". Will be removed in a future version
+        miniBarConfig: {
+          album: true, // display Album name in miniBar style
+          scroll: true, // scroll title / artist / album in miniBar style
+          logo: true, // display Spotify logo in miniBar style
+        },
+      },
+    },
+
+    {
       module: "MMM-FF-multigeiger",
       position: "center",
       header: "Multigeiger Deutschland",
@@ -967,7 +1029,7 @@ let config = {
       longAVG: 1,
       config: {
         layout: "charts",
-        type: "week",
+        type: "day",
         sensorList: [
           // {
           //   description: "Current Radiation",
@@ -1013,14 +1075,22 @@ let config = {
           {
             description: "Current Radiation",
             weight: 1,
-            toggleUnitInterval: 10000,
+            toggleUnitInterval: 4000,
             sensors: [
               { id: 31122, description: "Stuttgart" },
               { id: 59328, description: "Bern" },
+              { id: 65059, description: "Hamburg" },
               { id: 70948, description: "Nürnberg" },
+              { id: 45879, description: "Dresden" },
+            ],
+          },
+          {
+            description: "Current Radiation",
+            weight: 1,
+            toggleUnitInterval: 10000,
+            sensors: [
               // { id: 44590, description: "Frankfurt" },
               { id: 65059, description: "Hamburg" },
-              { id: 45879, description: "Dresden" },
             ],
           },
         ],
@@ -1034,8 +1104,10 @@ let config = {
           FORWARD: "SENSOR_LIST_DATE_RANGE_ZOOM_IN",
           BACKWARD: "SENSOR_LIST_LAYOUT_NEXT",
 
-          SWIPE_UP_1: "SENSOR_LIST_DATE_RANGE_ZOOM_IN",
+          SWIPE_UP_1: "SENSOR_LIST_DATE_RANGE_ZOOM_OUT",
           SWIPE_DOWN_1: "SENSOR_LIST_LAYOUT_NEXT",
+          MOVE_UP_1: "SENSOR_LIST_DATE_BACKWARDS",
+          MOVE_DOWN_1: "SENSOR_LIST_DATE_FORWARDS",
         },
       },
     },
@@ -1097,7 +1169,7 @@ let config = {
       position: "bottom_right",
       header: "process-stats",
       hiddenOnStartup: false,
-      disabled: false,
+      disabled: true,
       config: {
         updateInterval: 10000,
       },
@@ -1108,7 +1180,7 @@ let config = {
       position: "bottom_right",
       header: "stats.js",
       hiddenOnStartup: false,
-      disabled: false,
+      disabled: true,
       config: {
         screens: [0, 1, 2],
         screenIdx: 0,
@@ -1125,6 +1197,7 @@ let config = {
       hiddenOnStartup: false,
       singleLine: true,
       // disabled: !isRaspi,
+      disabled: true,
       config: {
         updateInterval: 10000, // every 10 seconds
         align: "right", // align labels
@@ -1150,6 +1223,8 @@ let config = {
         animationTime: 1000,
         rotationTime: 2 * 60 * 1000,
         modules: [
+          // ["alert", "updatenotification", "MMM-FF-digital-rain"],
+          ["alert", "clock", "MMM-FF-Genius-Lyrics", "MMM-Spotify"],
           // ["alert", "updatenotification", "MMM-FF-digital-rain"],
           [
             "alert",
