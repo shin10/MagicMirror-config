@@ -26,4 +26,9 @@ html[data-useragent*="Electron"] {
     width: calc(100vh - var(--gap-body-left) - var(--gap-body-right));
     height: calc(40vh - var(--gap-body-left) - var(--gap-body-right));
   }
+
+  .MMM-FF-Genius-Lyrics {
+    max-width: 100vh;
+    max-height: 100vw;
+  }
 }
