@@ -20,4 +20,8 @@ html[data-useragent*=Electron] body {
 html[data-useragent*=Electron] .MMM-FF-multigeiger .charts .graph-wrapper {
   width: calc(100vh - var(--gap-body-left) - var(--gap-body-right));
   height: calc(40vh - var(--gap-body-left) - var(--gap-body-right));
+}
+html[data-useragent*=Electron] .MMM-FF-Genius-Lyrics {
+  max-width: 100vh;
+  max-height: 100vw;
 }/*# sourceMappingURL=electron.css.map */
