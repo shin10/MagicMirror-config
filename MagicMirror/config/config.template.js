@@ -102,7 +102,7 @@ let config = {
             payload: null,
           },
           shellExec:
-            "vcgencmd display_power 1; mosquitto_pub -h home.broker -t /magic-mirror/display_power -m 1",
+            "vcgencmd display_power 1; mosquitto_pub -h local.broker -t magic-mirror/display_power -m 1",
           // You can make Mirror to wake up the modules which were hidden by onIdle with any gestures.
           moduleExec: {
             module: [],
@@ -283,7 +283,7 @@ let config = {
                 fire: "MQTT_MAGIC_MIRROR_DISPLAY_POWER",
                 exec: (payload) => {
                   payload = payload ? 1 : 0;
-                  return `vcgencmd display_power ${payload}; mosquitto_pub -h home.broker -t /magic-mirror/display_power -m ${payload};`;
+                  return `vcgencmd display_power ${payload}; mosquitto_pub -h local.broker -t magic-mirror/display_power -m ${payload};`;
                 },
               },
             ],
