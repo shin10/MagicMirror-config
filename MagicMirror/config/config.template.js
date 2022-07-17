@@ -918,6 +918,12 @@ let config = {
       config: {
         apiKey:"${GENIUS_LYRICS_CLIENT_ACCESS_TOKEN}", // CLIENT ACCESS TOKEN from https://genius.com/api-clients
         lyricsClasses: ["medium", "bold", "italic"],
+        events: {
+          sender: ["MMM-Spotify"],
+          SPOTIFY_UPDATE_SONG_INFO: "SPOTIFY_UPDATE_SONG_INFO",
+          SPOTIFY_CONNECTED: "SPOTIFY_CONNECTED",
+          SPOTIFY_DISCONNECTED : "SPOTIFY_DISCONNECTED"
+        }
       },
     },
     
