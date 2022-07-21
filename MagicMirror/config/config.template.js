@@ -359,15 +359,17 @@ let config = {
       config: {
         updateInterval: 24 * 60 * 60 * 1000,
         ignoreModules: [
-          // "MMM-FF-cht-sh",
-          // "MMM-FF-digital-rain",
-          // "MMM-FF-Dilbert",
-          // "MMM-FF-Evan-Roth-Red-Lines",
-          // "MMM-FF-multigeiger",
-          // "MMM-FF-process-stats",
-          // "MMM-FF-StatsJS",
-          // "MMM-FF-tenor-gif",
-          // "MMM-FF-XKCD",
+          "MMM-FF-cht-sh",
+          "MMM-FF-code-injector",
+          "MMM-FF-digital-rain",
+          "MMM-FF-Dilbert",
+          "MMM-FF-Evan-Roth-Red-Lines",
+          "MMM-FF-Genius-Lyrics",
+          "MMM-FF-multigeiger",
+          "MMM-FF-process-stats",
+          "MMM-FF-StatsJS",
+          "MMM-FF-tenor-gif",
+          "MMM-FF-XKCD",
           "MMM-PIR-Sensor", // forked to add event
           "MMM-SystemStats", // forked for various changes
           "MMM-wiki", // forked to replace interval with timeout
